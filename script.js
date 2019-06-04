@@ -10,6 +10,9 @@ var clusterFilters = {
 }
 
 console.log(Object.values(clusterFilters[Object.keys(clusterFilters)[0]])[0]);
+console.log(Object.entries(clusterFilters)[0], Object.entries(clusterFilters)[1]);
+
+console.log(Object.getOwnPropertyNames(clusterFilters))
 
 var filteredClusters = {
     'Tech': 0,
