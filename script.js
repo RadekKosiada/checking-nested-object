@@ -1,42 +1,41 @@
-var clusterFilters = {
-    'Tech': {
-        'API': true,
-        'IoT': true,
+// I have a big object like this
+
+var bigObj = {
+    'main-dish': {
+        'lasagna': true,
+        'pasta': false,
     },
-    'app': {
-        'Farming': true,
-        'Platform': false,
+    'others': {
+        'salad': true,
+        'soup': true,
     },
 }
-
-console.log(Object.values(clusterFilters[Object.keys(clusterFilters)[0]])[0]);
-console.log(Object.entries(clusterFilters)[0], Object.entries(clusterFilters)[1]);
-
-console.log(Object.getOwnPropertyNames(clusterFilters))
-
-var filteredClusters = {
-    'Tech': 0,
-    'app': 0
+ // and a small one, that should count how many 'false' values are for each key in the bigObj
+// by default all is 0
+var smallObj = {
+    'main-dish': 0,
+    'others': 0
 }
+// I built a UI in Vue.js that updates the booleans in real time 
+// and with every change I check for the true/false with this for loop
+// The problem: if I update the booleans from the bottom or middle the smallObj is not updated;
+// Only if I start from the first key: lasagna the smallObj is being updated;
 
-// console.log(filteredClusters, filteredClusters[Object.keys(clusterFilters)[0]]++);
-// console.log(Object.keys(filteredClusters)[0], Object.keys(clusterFilters)[0])
+for(var i = 0; i < Object.keys(bigObj).length; i ++) {
+    if(Object.keys(smallObj)[i] === Object.keys(bigObj)[i]) {
+        for(var j =0; j < Object.keys(bigObj[Object.keys(bigObj)[i]]).length; j++) {
 
-for(var i = 0; i < Object.keys(clusterFilters).length; i ++) {
-    if(Object.keys(filteredClusters)[i] === Object.keys(clusterFilters)[i]) {
-        for(var j =0; j < Object.keys(clusterFilters[Object.keys(clusterFilters)[i]]).length; j++) {
-
-            if(!Object.values(clusterFilters[Object.keys(clusterFilters)[i]])[j]) {
-                    filteredClusters[Object.keys(clusterFilters)[i]]++
-                    console.log(Object.keys(clusterFilters[Object.keys(clusterFilters)[i]])[j]);
+            if(!Object.values(bigObj[Object.keys(bigObj)[i]])[j]) {
+                    smallObj[Object.keys(bigObj)[i]]++
+                    console.log(Object.keys(bigObj[Object.keys(bigObj)[i]])[j]);
             } else {
-                console.log(Object.keys(clusterFilters[Object.keys(clusterFilters)[i]])[j]);
+                console.log(Object.keys(bigObj[Object.keys(bigObj)[i]])[j]);
             }
         }
     }
 }
 
-console.log(filteredClusters)
+console.log(smallObj)
 
 
 
@@ -82,5 +81,5 @@ console.log(filteredClusters)
 //         count_in_level[level] += c
 //     }
 // }
-// count(clusterFilters, )
+// count(bigObj, )
 // console.log(count_in_level)  // [1: 2, 2: 2, 3: 1]
