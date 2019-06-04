@@ -12,27 +12,43 @@ var bigObj = {
 }
  // and a small one, that should count how many 'false' values are for each key in the bigObj
 // by default all is 0
-var smallObj = {
-    'main-dish': 0,
-    'others': 0
-}
+// var smallObj = {
+//     'main-dish': 0,
+//     'others': 0
+// }
 
+
+
+
+var smallObj = {};
+
+Object.keys(bigObj).forEach(k => {
+var cnt = 0
+Object.keys(bigObj[k]).forEach(kk => {
+if (!bigObj[k][kk]) {
+cnt++;
+}
+})
+smallObj[k] = cnt
+})
+
+console.log(smallObj);
 
   
-  for (const key in bigObj) {
-    let value = bigObj[key];
+  // for (const key in bigObj) {
+  //   let value = bigObj[key];
     
-    //optional check for properties from prototype chain
-    if (bigObj.hasOwnProperty(key)) {
-      //no a property from prototype chain  
-      console.log(key)   
-      if(!bigObj[key])
-      smallObj[key]++;
-    }else{
-      //property from protytpe chain
-      console.log(bigObj[key])
-    }
-  }
+  //   //optional check for properties from prototype chain
+  //   if (bigObj.hasOwnProperty(key)) {
+  //     //no a property from prototype chain  
+  //     console.log(key)   
+  //     if(!bigObj[key])
+  //     smallObj[key]++;
+  //   }else{
+  //     //property from protytpe chain
+  //     console.log(bigObj[key])
+  //   }
+  // }
 
 
 // // I built a UI in Vue.js that updates the booleans in real time 
@@ -54,7 +70,7 @@ var smallObj = {
 //     }
 // }
 
-console.log(smallObj)
+// console.log(smallObj)
 
 
 
